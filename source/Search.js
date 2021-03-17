@@ -129,11 +129,28 @@ export class Search {
 
   /**
    * Adds searchable documents to the index. Documents will automatically be indexed for search.
-   * @param document
+   * @param documents
    */
   addDocuments(documents : Array<Object>) : void {
     this._documents = this._documents.concat(documents);
     this.indexDocuments_(documents, this._searchableFields);
+  }
+
+  /**
+   * Replace searchable documents to the index. Documents will automatically be indexed for search.
+   * @param documents
+   */
+  replaceDocuments(documents : Array<Object>) : void {
+    this._documents = documents;
+    this.indexDocuments_(documents, this._searchableFields);
+  }
+
+  /**
+   * Flushes searchable documents from the index.
+   */
+  flushDocuments() : void {
+    this._documents = [];
+    this.indexDocuments_([], this._searchableFields);
   }
 
   /**
