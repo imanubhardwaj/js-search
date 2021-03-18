@@ -169,6 +169,13 @@ export class Search {
   }
 
   /**
+   * Flushes searchable fields from the search context.
+   */
+  flushIndexes() {
+    this._searchableFields = [];
+  }
+
+  /**
    * Search all documents for ones matching the specified query text.
    * @param query
    * @returns {Array<Object>}
