@@ -1,6 +1,6 @@
 {
   "name": "js-client-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JS Search is an efficient, client-side search library for JavaScript and JSON objects",
   "main": "./dist/umd/js-search.js",
   "module": "./dist/esm/js-search.js",

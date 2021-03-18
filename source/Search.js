@@ -36,8 +36,9 @@ export class Search {
    * Constructor.
    * @param uidFieldName Field containing values that uniquely identify search documents; this field's values are used
    *                     to ensure that a search result set does not contain duplicate objects.
+   * @param indexStrategy
    */
-  constructor(uidFieldName : string | Array<string>) {
+  constructor(uidFieldName : string | Array<string>, indexStrategy: ?IIndexStrategy) {
     if (!uidFieldName) {
       throw Error('js-search requires a uid field name constructor parameter');
     }
@@ -45,7 +46,11 @@ export class Search {
     this._uidFieldName = uidFieldName;
 
     // Set default/recommended strategies
-    this._indexStrategy = new PrefixIndexStrategy();
+    if (indexStrategy) {
+      this._indexStrategy = indexStrategy;
+    } else {
+      this._indexStrategy = new PrefixIndexStrategy();
+    }
     this._searchIndex = new TfIdfSearchIndex(uidFieldName);
     this._sanitizer = new LowerCaseSanitizer();
     this._tokenizer = new SimpleTokenizer();
